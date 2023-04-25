@@ -1,0 +1,39 @@
+{% extends "layout/layout.html" %}
+
+{% block title %} {{title}} {% endblock %}
+{% block custom_css %}{% endblock %}
+
+{% block content %}
+
+<section class="section gallery">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center mb-5">
+                <h1 class="font-weight-bold">All latest Smart Watch</h1>
+            </div>
+
+            {% for product in products %}
+            <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                <div class="block">
+                    <div class="gallery-overlay">
+                        <a href="/product-details/{{ product.id }}" class="gallery-popup">
+                            <span class="material-icons md-light md-36">add</span>
+                        </a>
+                    </div>
+                    <img class="img-fluid" src="{{ url_for('static',filename=product.images ) }}" alt="{{ product.name }}">
+                </div>
+                <div class="product-info">
+                    <h4 class="mb-2"><a href="/product-details/{{ product.id }}" class="link-title">{{ product.name }}</a></h4>
+                    <p class="price">${{ product.sale_off }}
+                        <s class="price">${{ product.price }}</s>
+                    </p>
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
+    </div>
+</section>
+{% endblock content %}
+
+{% block custom_js %}{% endblock %}
